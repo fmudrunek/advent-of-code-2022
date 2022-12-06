@@ -29,7 +29,7 @@ def solve_part_2(input_path: Path) -> int:
 
 
 if __name__ == "__main__":
-    input_path = Path("input_data.txt")
+    input_path = Path(__file__).parent / "input_data.txt"
     result_part_1 = solve_part_1(input_path)
     result_part_2 = solve_part_2(input_path)
     print(f"Part 1 result: {result_part_1}\nPart 2 result: {result_part_2}")
