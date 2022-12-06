@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
 
 _scores_1 = {
@@ -16,29 +16,33 @@ _scores_2 = {
 }
 
 
-def _solve(input_path: Path, scores: Dict[str, int]):
+def _solve(data: List[str], scores: Dict[str, int]):
     result = 0
-    with input_path.open() as input_file:
-        for line in input_file:
-            result += scores[line.strip()]
+    for line in data:
+        result += scores[line.strip()]
     return result
 
 
 
-def solve_part_1(input_path: Path) ->  int:
-    return _solve(input_path, _scores_1)
+def solve_part_1(data: List[str]) ->  int:
+    return _solve(data, _scores_1)
 
 
-def solve_part_2(input_path: Path) -> int:
-    return _solve(input_path, _scores_2)
+def solve_part_2(data: List[str]) -> int:
+    return _solve(data, _scores_2)
 
 
 
 
+
+def get_data(path: Path) -> List[str]:
+    with path.open() as input_file:
+        return [line.strip() for line in input_file.readlines()]
 
 if __name__ == "__main__":
     input_path = Path(__file__).parent / "input_data.txt"
-    result_part_1 = solve_part_1(input_path)
-    result_part_2 = solve_part_2(input_path)
+    data = get_data(input_path)
+    result_part_1 = solve_part_1(data)
+    result_part_2 = solve_part_2(data)
     print(f"Part 1 result: {result_part_1}\nPart 2 result: {result_part_2}")
 
